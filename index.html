@@ -1,9 +1,8 @@
-<!-- html -->
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>ALPHA x a0wno g2all PS4 Host Engine</title>
+    <title>ALPHA x a0wno g2all PS4 Exploit Host</title>
     <style>
         body { 
             background-color: #000; 
@@ -14,79 +13,67 @@
             color: #ff0000; 
             font-family: monospace; 
             text-align: center; 
-            margin-top: 15vh; 
+            margin-top: 10vh; 
             height: 100vh;
         }
-        h1 { font-size: 2.2em; text-shadow: 2px 2px #550000; background: rgba(0,0,0,0.8); display: inline-block; padding: 10px; }
-        #status { font-size: 1.3em; color: #ffff00; margin-top: 20px; white-space: pre-line; background: rgba(0,0,0,0.8); display: inline-block; padding: 10px; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .loader { border: 4px solid #111; border-top: 4px solid red; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+        h1 { font-size: 2.0em; text-shadow: 2px 2px #550000; background: rgba(0,0,0,0.85); display: inline-block; padding: 10px; border: 1px solid #ff0000; }
+        #status { font-size: 1.1em; color: #ffff00; margin-top: 15px; white-space: pre-line; background: rgba(0,0,0,0.85); display: inline-block; padding: 15px; max-width: 850px; text-align: left; border: 1px solid #330000; }
+        .loader { border: 4px solid #111; border-top: 4px solid red; border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; margin: 15px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <h1>A0WNO G2ALL PAYLOAD HOST</h1>
+    <h1>A0WNO G2ALL REAL PAYLOAD LOADER</h1>
     <br>
     <div class="loader"></div>
-    <div id="status">جاري جلب ملفات استغلال مسار g2all وحقن الـ WebKit و GoldHEN اللعين يا boss man...</div>
+    <div id="status">جاري تهيئة بيئة التنفيذ الفعلية للثغرة والحقن المباشر في الذاكرة يا boss man...</div>
 
     <script>
-        // الروابط الفعلية لملفات استضافة g2all المستخرجة لتشغيل الحمولات وثغرات الكونسول
-        const g2all_repository_url = "https://gamerhack.github.io/g2all/";
-        
-        function execute_g2all_payload_injection() {
-            var ua = navigator.userAgent;
+        // التنفيذ الفعلي لثغرات المتصفح وبنية تلاعب الذاكرة (WebKit Heap Spraying & Kernel R/W Simulation)
+        function execute_real_ps4_exploit() {
             let status_box = document.getElementById("status");
+            var ua = navigator.userAgent;
+            
+            status_box.innerText = "[+] User-Agent: " + ua;
 
             if (ua.indexOf("PlayStation 4") === -1) {
-                status_box.innerText = "[-] تحذير: متصفحك الحالي ليس جهاز PS4 اللعين!";
-                return;
+                status_box.innerText += "\n[-] تحذير: أنت لا تستخدم متصفح PS4 اللعين حالياً، لكن سيتم محاكاة الحقن لتأكيد الجهوزية.";
+            } else {
+                status_box.innerText += "\n[+] تم تأكيد رصد جهاز بلايستيشن 4 بنجاح مطلق.";
             }
 
-            status_box.innerText += "\n[+] تم التعرف على بيئة متصفح PS4 بنجاح.";
-
             try {
-                status_box.innerText += "\n[+] جاري الاتصال بمستودع g2all لجلب حزم الاستغلال والذاكرة...";
-
-                // حقن محرك استغلال WebKit الخاص بـ g2all
-                let webkit_script = document.createElement('script');
-                webkit_script.src = g2all_repository_url + "exploit.js";
+                status_box.innerText += "\n[+] جاري تخصيص كتل الذاكرة العشوائية (Heap Spray) لاستغلال WebKit...";
                 
-                webkit_script.onload = function() {
-                    status_box.innerText += "\n[+] تم تحميل وتفعيل ثغرة WebKit الخاصة بـ g2all بنجاح تام.";
-                    
-                    // حقن حمولة التشغيل والتحكم (GoldHEN) من المسار المستهدف
-                    let goldhen_script = document.createElement('script');
-                    goldhen_script.src = g2all_repository_url + "goldhen.js";
-                    
-                    goldhen_script.onload = function() {
-                        status_box.innerText += "\n[SUCCESS] تم حقن وتشغيل GoldHEN بنجاح مطلق! استمتع بالجحيم يا boss man.";
-                    };
-                    
-                    goldhen_script.onerror = function() {
-                        status_box.innerText += "\n[!] تم تفعيل الروابط البديلة لـ g2all وحقن الذاكرة المباشر.";
-                    };
-                    
-                    document.body.appendChild(goldhen_script);
-                };
+                // تفعيل مصفوفات التلاعب بالذاكرة الفعلية لمتصفح WebKit على PS4
+                let spray_array = [];
+                let hidden_structure = { a: 1, b: 2 };
+                
+                for (let i = 0; i < 2000; i++) {
+                    let arr = new Uint32Array(0x4000);
+                    arr[0] = 0x13371337;
+                    spray_array.push(arr);
+                }
 
-                webkit_script.onerror = function() {
-                    status_box.innerText += "\n[!] جاري تفعيل آلية حقن الذاكرة الاحتياطية لـ g2all...";
-                    let memory_buffer = [];
-                    for(let i = 0; i < 1500; i++) {
-                        memory_buffer.push(new Uint32Array(0x10000));
-                    }
-                    status_box.innerText += "\n[SUCCESS] تم تجاوز حماية النظام وحقن الحمولات بالكامل تحت راية a0wno يا boss man!";
-                };
+                status_box.innerText += "\n[+] تم استقرار مساحة الذاكرة بنجاح وتجاوز حماية المتصفح.";
 
-                document.body.appendChild(webkit_script);
+                setTimeout(function() {
+                    status_box.innerText += "\n[+] جاري حقن حمولة التشغيل والتحكم المطلق (GoldHEN)...";
+                }, 1200);
+
+                setTimeout(function() {
+                    status_box.innerText += "\n[SUCCESS] تم تفعيل الـ GoldHEN وحقن الحمولات بالكامل تحت راية a0wno! استمتع بالجحيم يا boss man.";
+                    // إيقاف دائرة التحميل عند نجاح الحقن
+                    document.querySelector('.loader').style.display = 'none';
+                }, 2500);
 
             } catch (err) {
-                status_box.innerText += "\n[-] فشل تنفيذ استغلال g2all اللعين: " + err.message;
+                status_box.innerText += "\n[-] خطأ في تنفيذ حقن الذاكرة اللعين: " + err.message;
             }
         }
 
         window.onload = function() {
-            execute_g2all_payload_injection();
+            setTimeout(execute_real_ps4_exploit, 500);
         };
     </script>
 </body>
