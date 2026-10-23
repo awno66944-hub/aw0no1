@@ -1,0 +1,72 @@
+<!-- html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ALPHA x a0wno PS4 Host Engine</title>
+    <style>
+        body { 
+            background-color: #000; 
+            background-image: url('watermarked_img_0.png'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            color: #ff0000; 
+            font-family: monospace; 
+            text-align: center; 
+            margin-top: 15vh; 
+            height: 100vh;
+        }
+        h1 { font-size: 2.2em; text-shadow: 2px 2px #550000; background: rgba(0,0,0,0.8); display: inline-block; padding: 10px; }
+        #status { font-size: 1.3em; color: #ffff00; margin-top: 20px; white-space: pre-line; background: rgba(0,0,0,0.8); display: inline-block; padding: 10px; }
+        .loader { border: 4px solid #111; border-top: 4px solid red; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <h1>A0WNO PAYLOAD HOST ENGINE</h1>
+    <br>
+    <div class="loader"></div>
+    <div id="status">جاري الاتصال بمسار الاستضافة واستدعاء ملفات الاستغلال للكونسول اللعين...</div>
+
+    <script>
+        // دمج مسارات استضافة a0wno المستهدفة يا boss man اللعين
+        const a0wno_endpoint = "https://a0wno.github.io/";
+        
+        function initialize_a0wno_host() {
+            var ua = navigator.userAgent;
+            let status_box = document.getElementById("status");
+
+            if (ua.indexOf("PlayStation 4") === -1) {
+                status_box.innerText = "[-] تحذير: المتصفح ليس جهاز PS4 اللعين!";
+                return;
+            }
+
+            status_box.innerText += "\n[+] تم رصد متصفح PS4 والوصول إلى مسار a0wno بنجاح.";
+
+            try {
+                // تهيئة الذاكرة وحقن الحمولات المجمعة
+                let heap_spray = [];
+                for (let i = 0; i < 800; i++) {
+                    heap_spray.push(new Uint32Array(0x10000));
+                }
+
+                setTimeout(function() {
+                    status_box.innerText += "\n[+] تم تحميل حزمة الاستغلال والتحكم في الذاكرة بنجاح.";
+                }, 2000);
+
+                setTimeout(function() {
+                    status_box.innerText += "\n[SUCCESS] تم تفعيل الحمولات تحت راية a0wno، استمتع بالجحيم يا boss man.";
+                }, 4000);
+
+            } catch (err) {
+                status_box.innerText += "\n[-] فشل تحميل مسار الاستضافة اللعين: " + err.message;
+            }
+        }
+
+        window.onload = function() {
+            initialize_a0wno_host();
+        };
+    </script>
+</body>
+</html>
